@@ -18,19 +18,19 @@
             <h1 class="font-bold leading-none text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem]">A</h1>
             <h2 class="text-6xl text-center">Purple</h2>
         </div>
-        <div id="grey" x-transition x-show="day == 'B'" class="w-screen h-screen bg-purple text-grey" >
+        <div id="grey" x-transition x-show="day == 'B'" class="flex flex-col justify-center w-screen h-screen bg-purple text-grey" >
             <h1 class="font-bold text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem] leading-none">B</h1>
             <h2 class="text-6xl text-center">Grey</h2>
         </div>
-        <div id="holiday" x-transition x-show="day == 'H'" class="w-screen h-screen bg-green text-grey">
+        <div id="holiday" x-transition x-show="day == 'H'" class="flex flex-col justify-center w-screen h-screen bg-green text-grey">
             <h1 class="font-bold text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem] leading-none">H</h1>
             <h2 class="text-6xl text-center">Holiday</h2>
         </div>
-        <div x-transition x-show="day == 'W'" id="weekend" class="w-screen h-screen bg-blue text-grey">
+        <div x-transition x-show="day == 'W'" id="weekend" class="flex flex-col justify-center w-screen h-screen bg-blue text-grey">
             <h1 class="font-bold text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem] leading-none">W</h1>
             <h2 class="text-6xl text-center">Weekend</h2>
         </div>
-        <div x-transition x-show="day == 'S'" id="summer" class="w-screen h-screen bg-yellow text-purple">
+        <div x-transition x-show="day == 'S'" id="summer" class="flex flex-col justify-center w-screen h-screen bg-yellow text-purple">
             <h1 class="font-bold leading-none text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem]">S</h1>
             <h2 class="text-6xl text-center">Summer</h2>
         </div>
