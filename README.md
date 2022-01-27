@@ -1,15 +1,13 @@
-# 🚀 Welcome to your new awesome project!
+# purplegrey.today
 
-This project has been created using **webpack-cli**, you can now run
+The frontend to api.purplegrey.today.
 
-```
-npm run build
-```
+Tells you if it's one of:
+- A-day
+- B-day
+- Holiday
+- Weekend
+- Summer
+- Out of range
 
-or
-
-```
-yarn build
-```
-
-to bundle your application
+PWA coming soon:tm:
