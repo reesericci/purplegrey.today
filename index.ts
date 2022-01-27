@@ -32,7 +32,7 @@ window.Alpine = Alpine
 Alpine.store("functions", {
     genDayQuery(date: Date) {return new DayQuery(date)},
     async fetchDay(query: DayQueryInterface) { 
-        const req = await request("https://api.purplegrey.today/.netlify/functions/graphql", query.query) 
+        const req = await request("https://api.purplegrey.today/graphql", query.query) 
         return req;
     }
 })
