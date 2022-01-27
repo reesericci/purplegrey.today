@@ -6,13 +6,17 @@
         <link rel="stylesheet" href="./style.scss" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <body class="w-screen h-screen overflow-x-hidden" x-init="axios.get('https://api.purplegrey.today/.netlify/functions/day', { params: { month: date.getMonth() + 1, day: date.getDate(), year: date.getFullYear()}}).then(res => { loading = false; day = res.data.daytype; loading = false; })" x-data="{ date: new Date(), day: null, loading: true }">
-        <form @picked="date=new Date($el[0].value); axios.get('https://api.purplegrey.today/.netlify/functions/day', { params: { month: date.getMonth() + 1, day: date.getDate(), year: date.getFullYear()}}).then(res => { console.log(res.data); loading = false; day = res.data.daytype; loading = false; })" @submit.prevent="console.log($el); date=new Date($el[0].value); axios.get('https://api.purplegrey.today/.netlify/functions/day', { params: { month: date.getMonth() + 1, day: date.getDate(), year: date.getFullYear()}}).then(res => { loading = false; day = res.data.daytype; loading = false; })" class="absolute w-screen top-3 sm:right-3 sm:w-fit" id="calendar">
+    <body class="w-screen h-screen overflow-x-hidden" x-init="$store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" x-data="{ date: new Date(), day: null, loading: true }">
+        <form @picked="date=new Date($el[0].value); $store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" @submit.prevent="date=new Date($el[0].value); $store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" class="absolute w-screen top-3 sm:right-3 sm:w-fit" id="calendar">
             <input :value="`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`" autocomplete="off" type="text" class="w-full text-center border-2 border-solid rounded-sm shadow-lg sm:w-32 border-purple bg-grey text-purple">
         </form>
-        <div id="loading" x-show="loading" x-transition class="w-screen h-screen bg-blue text-grey">
-            <h1 class="font-bold text-center text-[30rem] leading-none">L</h1>
+        <div id="loading" x-transition x-show="loading" class="flex flex-col justify-center w-screen h-screen bg-blue text-grey">
+            <h1 class="font-bold leading-none text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem]">L</h1>
             <h2 class="text-6xl text-center">Loading</h2>
+        </div>
+        <div id="out" x-transition x-show="day == 'O'" class="flex flex-col justify-center w-screen h-screen bg-blue text-grey">
+            <h1 class="font-bold leading-none text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem]">O</h1>
+            <h2 class="text-6xl text-center">Out of range</h2>
         </div>
         <div id="purple" x-transition x-show="day == 'A'" class="flex flex-col justify-center w-screen h-screen bg-grey text-purple">
             <h1 class="font-bold leading-none text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem]">A</h1>
@@ -34,9 +38,6 @@
             <h1 class="font-bold leading-none text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem]">S</h1>
             <h2 class="text-6xl text-center">Summer</h2>
         </div>
-        <script src="//unpkg.com/alpinejs" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker-full.min.js"></script>
-        <script src="//unpkg.com/axios"></script>
         <script type="module" src="./index.ts"></script>
     </body>
 </html>
