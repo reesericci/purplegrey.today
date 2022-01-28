@@ -13,6 +13,7 @@ async function activate() {
   );
 }
 addEventListener('activate', e => e.waitUntil(activate()));
+addEventListener('fetch', e => e.waitUntil(activate()));
 
 async function updateDay() {
   console.log("updating day...")
