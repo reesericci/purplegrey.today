@@ -20,7 +20,8 @@
         512,
         1024
       ],
-      "genFavicons": true
+      "genFavicons": true,
+      "appleTouchIconBG": "#FFFFFF"
     }
   },
   "devDependencies": {
