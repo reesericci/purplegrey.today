@@ -15,6 +15,7 @@ async function registerPeriodicSync() {
 addEventListener('periodicsync', event => {
   if (event.tag == 'update-day') {
     event.waitUntil(() => {
+      console.log("updated")
       dispatchEvent(new Event("picked"))
     });
   }
