@@ -39,7 +39,6 @@ async function periodicSync(e) {
     }).then(async (res) => {
         const cache = await caches.open(version);
         cache.put("https://api.purplegrey.today/api", res)
-        return res.clone()
     });
   }
 }
