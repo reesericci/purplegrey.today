@@ -15,7 +15,16 @@ async function activate() {
   );
 }
 addEventListener('activate', e => e.waitUntil(activate()));
-addEventListener('fetch', e => e.waitUntil(activate()));
+
+
+self.addEventListener('fetch', async (event) => {
+  const matchingCache = await (await caches.match(event.request)).json()
+  if(event.headers.get("X-Date-Time") == matchingCache.data.getDay.time) {
+    event.respondWith(
+      caches.match(event.request)
+    );
+  }
+});
 
 async function periodicSync(e) {
   if (e.tag == 'update-day') {
@@ -34,7 +43,8 @@ async function periodicSync(e) {
         }
       }),
       headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          'X-Date-Time': String(date.getTime())
       }
     }).then(async (res) => {
         const cache = await caches.open(version);
