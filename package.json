@@ -10,13 +10,15 @@
     "name": "purplegrey.today",
     "shortName": "purplegrey",
     "startURL": "./index.html",
-    "theme": "#add8e6",
+    "theme": "#A449FF",
     "generateIconOptions": {
       "baseIcon": "./logo.png",
       "sizes": [
+        128,
         192,
         384,
-        512
+        512,
+        1024
       ],
       "genFavicons": true
     }
