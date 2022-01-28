@@ -17,7 +17,7 @@ addEventListener('fetch', e => e.waitUntil(activate()));
 
 async function periodicSync(e) {
   if (e.tag == 'update-day') {
-    e.waitUntil(document.dispatchEvent(new Event("picked")))
+    e.waitUntil(dispatchEvent(new Event("picked")))
   }
 }
 
