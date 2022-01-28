@@ -23,7 +23,6 @@ addEventListener('periodicsync', event => {
 async function install() {
   const cache = await caches.open(version);
   await cache.addAll(manifest);
-  await registerPeriodicSync()
 }
 addEventListener('install', e => e.waitUntil(install()));
 
@@ -32,5 +31,6 @@ async function activate() {
   await Promise.all(
     keys.map(key => key !== version && caches.delete(key))
   );
+  await registerPeriodicSync()
 }
 addEventListener('activate', e => e.waitUntil(activate()));
