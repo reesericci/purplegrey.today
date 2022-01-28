@@ -1,4 +1,5 @@
 import {manifest, version} from '@parcel/service-worker';
+import { request, gql, RequestDocument } from 'graphql-request'
 
 async function install() {
   const cache = await caches.open(version);
@@ -13,15 +14,22 @@ async function activate() {
   );
 }
 addEventListener('activate', e => e.waitUntil(activate()));
-addEventListener('fetch', e => e.waitUntil(activate()));
+addEventListener('fetch', e => e.waitUntil());
 
 async function periodicSync(e) {
   if (e.tag == 'update-day') {
-    e.waitUntil(dispatchEvent(new Event("picked")))
+    const date = new Date()
+    const req = await request("https://api.purplegrey.today/graphql", gql`{
+      getDay(day: ${date.getDate()}, month: ${date.getMonth() + 1}, year: ${date.getFullYear()}) {
+      time,
+      type
+      }
+    }`) 
+    const cache = await caches.open(version);
+    cache.put("https://api.purplegrey.today/api", req)
   }
 }
 
 addEventListener('periodicsync', (e) => {
   e.waitUntil(periodicSync(e)) 
-
 })

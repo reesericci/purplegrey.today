@@ -37,6 +37,23 @@ Alpine.store("functions", {
     }
 })
 
+Alpine.data("day", () => ({
+    date: new Date(), 
+    day: null, 
+    loading: true,
+    init() {
+        this.fetchDay();
+        this.updateInterval = setInterval(() => { this.date = new Date(); this.fetchDay() }, 1 * 60 * 60 * 1000)
+    },
+    async fetchDay() {
+        this.loading = true;
+        const query = new DayQuery(this.date)
+        const req = await request("https://api.purplegrey.today/graphql", query.query) 
+        this.day = req.getDay.type;
+        this.loading = false;
+    }   
+}))
+
 Alpine.start()
 
 const datepicker = new Datepicker(document.getElementById("calendar").childNodes[1], {
