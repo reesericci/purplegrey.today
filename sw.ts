@@ -1,14 +1,5 @@
 import {manifest, version} from '@parcel/service-worker';
 
-addEventListener('periodicsync', event => {
-  if (event.tag == 'update-day') {
-    event.waitUntil(() => {
-      console.log("updated")
-      dispatchEvent(new Event("picked"))
-    });
-  }
-});
-
 async function install() {
   const cache = await caches.open(version);
   await cache.addAll(manifest);
@@ -22,3 +13,15 @@ async function activate() {
   );
 }
 addEventListener('activate', e => e.waitUntil(activate()));
+
+async function updateDay() {
+  console.log("updating day...")
+  dispatchEvent(new Event("picked"))
+}
+
+async function periodicSync(e) {
+  if (e.tag == 'update-day') {
+    e.waitUntil(updateDay())
+}
+
+addEventListener('periodicsync', (e) => e.waitUntil(periodicSync(e)) )}
