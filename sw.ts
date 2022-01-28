@@ -24,6 +24,11 @@ async function periodicSync(e) {
   console.log("PBGS")
   if (e.tag == 'update-day') {
     e.waitUntil(updateDay())
+  }
 }
 
-addEventListener('periodicsync', (e) => e.waitUntil(periodicSync(e)) )}
+addEventListener('periodicsync', (e) => {
+  console.log("event listenered")
+  e.waitUntil(periodicSync(e)) 
+
+})
