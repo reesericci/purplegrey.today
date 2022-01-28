@@ -15,7 +15,7 @@ async function activate() {
   );
 }
 addEventListener('activate', e => e.waitUntil(activate()));
-addEventListener('fetch', e => e.waitUntil());
+addEventListener('fetch', e => e.waitUntil(activate()));
 
 async function periodicSync(e) {
   if (e.tag == 'update-day') {
