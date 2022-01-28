@@ -19,14 +19,27 @@ addEventListener('fetch', e => e.waitUntil());
 async function periodicSync(e) {
   if (e.tag == 'update-day') {
     const date = new Date()
-    const req = await request("https://api.purplegrey.today/graphql", gql`{
-      getDay(day: ${date.getDate()}, month: ${date.getMonth() + 1}, year: ${date.getFullYear()}) {
-      time,
-      type
+    fetch('https://api.purplegrey.today/graphql', {
+      method: 'POST',
+      body: JSON.stringify({
+        query: `{
+          getDay(day: ${date.getDate()}, month: ${date.getMonth() + 1}, year: ${date.getFullYear()}) {
+          time,
+          type
+          }
+        }`,
+        variables: {
+          type: 'post'
+        }
+      }),
+      headers: {
+          'content-type': 'application/json'
       }
-    }`) 
-    const cache = await caches.open(version);
-    cache.put("https://api.purplegrey.today/api", req)
+    }).then(async (res) => {
+        const data = await res.json()
+        const cache = await caches.open(version);
+        cache.put("https://api.purplegrey.today/api", data.data.getDay)
+    });
   }
 }
 
