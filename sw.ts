@@ -21,6 +21,7 @@ async function updateDay() {
 }
 
 async function periodicSync(e) {
+  console.log("PBGS")
   if (e.tag == 'update-day') {
     e.waitUntil(updateDay())
 }
