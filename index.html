@@ -44,7 +44,11 @@
             new URL('sw.ts', import.meta.url),
             {type: 'module'}
         );
-        async function registerPeriodicSync() {
+        
+        const status = await navigator.permissions.query({
+           name: 'periodic-background-sync',
+        });
+        if (status.state === 'granted') {
           const registration = await navigator.serviceWorker.ready;
           try {
             await registration.periodicSync.register('update-day', {
@@ -53,15 +57,8 @@
           } catch {
             console.log('Periodic Sync could not be registered!');
           }
-        }
-
-        const status = await navigator.permissions.query({
-           name: 'periodic-background-sync',
-        });
-        if (status.state === 'granted') {
-          registerPeriodicSync()
         } else {
-          // Periodic background sync cannot be used.
+         console.log("PBGS unavailable")
         }
     </script>
   </body>
