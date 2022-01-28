@@ -1,4 +1,5 @@
 import {manifest, version} from '@parcel/service-worker';
+import { responsePathAsArray } from 'graphql';
 import { request, gql, RequestDocument } from 'graphql-request'
 
 async function install() {
@@ -36,9 +37,9 @@ async function periodicSync(e) {
           'content-type': 'application/json'
       }
     }).then(async (res) => {
-        const data = await res.json()
         const cache = await caches.open(version);
-        cache.put("https://api.purplegrey.today/api", data.data.getDay)
+        cache.put("https://api.purplegrey.today/api", res)
+        return res.clone()
     });
   }
 }
