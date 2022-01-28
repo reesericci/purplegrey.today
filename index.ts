@@ -50,17 +50,3 @@ document.getElementById("calendar").addEventListener("submit", (e) => {
     e.preventDefault()
     console.log(e)
 })
-
-
-async function registerPeriodicSync() {
-    const registration = await navigator.serviceWorker.ready;
-    try {
-      await registration.periodicSync.register('update-day', {
-        minInterval: 1 * 60 * 60 * 1000,
-      });
-    } catch {
-      console.log('Periodic Sync could not be registered!');
-    }
-  }
-
-registerPeriodicSync()
