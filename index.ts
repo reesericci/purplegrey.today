@@ -27,15 +27,6 @@ declare global {
 }
 
 window.Alpine = Alpine
- 
-
-Alpine.store("functions", {
-    genDayQuery(date: Date) {return new DayQuery(date)},
-    async fetchDay(query: DayQueryInterface) { 
-        const req = await request("https://api.purplegrey.today/graphql", query.query) 
-        return req;
-    }
-})
 
 Alpine.data("day", () => ({
     date: new Date(), 

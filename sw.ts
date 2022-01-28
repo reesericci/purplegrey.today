@@ -15,44 +15,4 @@ async function activate() {
   );
 }
 addEventListener('activate', e => e.waitUntil(activate()));
-
-
-self.addEventListener('fetch', async (event) => {
-  const matchingCache = await (await caches.match(event.request)).json()
-  if(event.headers.get("X-Date-Time") == matchingCache.data.getDay.time) {
-    event.respondWith(
-      caches.match(event.request)
-    );
-  }
-});
-
-async function periodicSync(e) {
-  if (e.tag == 'update-day') {
-    const date = new Date()
-    fetch('https://api.purplegrey.today/graphql', {
-      method: 'POST',
-      body: JSON.stringify({
-        query: `{
-          getDay(day: ${date.getDate()}, month: ${date.getMonth() + 1}, year: ${date.getFullYear()}) {
-          time,
-          type
-          }
-        }`,
-        variables: {
-          type: 'post'
-        }
-      }),
-      headers: {
-          'content-type': 'application/json',
-          'X-Date-Time': String(date.getTime())
-      }
-    }).then(async (res) => {
-        const cache = await caches.open(version);
-        cache.put("https://api.purplegrey.today/api", res)
-    });
-  }
-}
-
-addEventListener('periodicsync', (e) => {
-  e.waitUntil(periodicSync(e)) 
-})
+addEventListener('fetch', e=> e.waitUntil(activate()))
