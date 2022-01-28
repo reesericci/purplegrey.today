@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body class="w-screen h-screen overflow-x-hidden" x-init="$store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" x-data="{ date: new Date(), day: null, loading: true }">
-    <form @picked="date=new Date($el[0].value); $store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" @submit.prevent="date=new Date($el[0].value); $store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" class="absolute w-screen top-3 sm:right-3 sm:w-fit" id="calendar">
+    <form @picked="console.log('fired picked');date=new Date($el[0].value); $store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" @submit.prevent="date=new Date($el[0].value); $store.functions.fetchDay($store.functions.genDayQuery(date)).then((data) => {day = data.getDay.type; loading = false;})" class="absolute w-screen top-3 sm:right-3 sm:w-fit" id="calendar">
       <input :value="`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`" autocomplete="off" type="text" class="w-full text-center border-2 border-solid rounded-sm shadow-lg sm:w-32 border-purple bg-grey text-purple">
     </form>
     <div id="loading" x-transition="" x-show="loading" class="flex flex-col justify-center w-screen h-screen bg-blue text-grey">

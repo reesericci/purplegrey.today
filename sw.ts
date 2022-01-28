@@ -15,20 +15,13 @@ async function activate() {
 addEventListener('activate', e => e.waitUntil(activate()));
 addEventListener('fetch', e => e.waitUntil(activate()));
 
-async function updateDay() {
-  console.log("updating day...")
-  dispatchEvent(new Event("picked"))
-}
-
 async function periodicSync(e) {
-  console.log("PBGS")
   if (e.tag == 'update-day') {
-    e.waitUntil(updateDay())
+    e.waitUntil(window.dispatchEvent(new Event("picked")))
   }
 }
 
 addEventListener('periodicsync', (e) => {
-  console.log("event listenered")
   e.waitUntil(periodicSync(e)) 
 
 })
