@@ -21,7 +21,8 @@
         1024
       ],
       "genFavicons": true,
-      "appleTouchIconBG": "#FFFFFF"
+      "appleTouchIconBG": "#FFFFFF",
+      "purpose":[ "maskable", "any" ]
     }
   },
   "devDependencies": {
