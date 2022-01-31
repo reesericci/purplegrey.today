@@ -5,6 +5,24 @@
     <title>purplegrey</title>
     <link rel="stylesheet" href="./style.scss">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Primary Meta Tags -->
+    <title>purplegrey.today</title>
+    <meta name="title" content="purplegrey.today">
+    <meta name="description" content="Find out whether it's an A-day or a B-day on a friendly website and mobile app.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://purplegrey.today">
+    <meta property="og:title" content="purplegrey.today">
+    <meta property="og:description" content="Find out whether it's an A-day or a B-day on a friendly website and mobile app.">
+    <meta property="og:image" content="./logo.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://purplegrey.today">
+    <meta property="twitter:title" content="purplegrey.today">
+    <meta property="twitter:description" content="Find out whether it's an A-day or a B-day on a friendly website and mobile app.">
+    <meta property="twitter:image" content="./logo.png">
+
   </head>
   <body class="w-screen h-screen overflow-x-hidden" x-data="day">
     <form @picked="date=new Date($el[0].value); fetchDay()" @submit.prevent="date=new Date($el[0].value); fetchDay()" class="absolute w-screen top-3 sm:right-3 sm:w-fit" id="calendar">
