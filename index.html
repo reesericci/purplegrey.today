@@ -8,8 +8,8 @@
   </head>
   <body class="w-screen h-screen overflow-x-hidden" x-data="day">
     <form @picked="date=new Date($el[0].value); fetchDay()" @submit.prevent="date=new Date($el[0].value); fetchDay()" class="absolute w-screen top-3 sm:right-3 sm:w-fit" id="calendar">
-      <input :value="`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`" autocomplete="off" type="text" class="w-full text-center border-2 border-solid rounded-sm shadow-lg sm:w-32 border-purple bg-grey text-purple font-bold">
-      <label hidden for="calendar">Select date</label>
+	<input id="calenderInput" :value="`${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`" autocomplete="off" type="text" class="w-full text-center border-3 border-solid rounded-sm shadow-lg sm:w-32 border-purple bg-grey text-purple font-bold text-xl">
+	<label for="calendarInput" hidden>Select date</label>
     </form>
     <div id="loading" x-transition="" x-show="loading" class="flex flex-col justify-center w-screen h-screen bg-blue text-grey">
       <h1 class="font-bold leading-none text-center text-[10rem] md:text-[15rem] lg:text-[20rem] xl:text-[30rem]">L</h1>
