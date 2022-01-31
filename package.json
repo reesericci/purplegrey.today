@@ -25,8 +25,11 @@
     }
   },
   "devDependencies": {
+    "@parcel/optimizer-css": "^2.2.1",
+    "@parcel/optimizer-esbuild": "^2.2.1",
     "@parcel/packager-raw-url": "^2.2.1",
     "@parcel/packager-xml": "^2.2.1",
+    "@parcel/transformer-css-experimental": "^2.2.1",
     "@parcel/transformer-sass": "^2.2.0",
     "@parcel/transformer-typescript-tsc": "^2.2.1",
     "@parcel/transformer-webmanifest": "^2.2.1",
